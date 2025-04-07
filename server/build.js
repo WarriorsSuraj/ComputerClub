@@ -1,3 +1,5 @@
+/* todo: add obfuscation because */
+
 require("esbuild")
     .build({
         entryPoints: ["src/index.ts"],

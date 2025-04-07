@@ -1,12 +1,20 @@
 import express from 'express';
+import dotenv from "dotenv";
+import handleRoute from './routing';
+import path from "node:path";
+
+/*
+dotenv.config({
+    path: "../../.env",
+});*/
 
 const app = express();
-const port = 3000;
 
 app.get("/", async (req, res) => {
-    res.sendStatus(200);
+    console.log(path.join(__dirname, await handleRoute(req.url)))
+    res.sendFile(path.join(__dirname, await handleRoute(req.url)));
 });
 
-app.listen(port, () => {
-    console.log(`website is running on port ${port}`)
+app.listen(3000, () => {
+    console.log(`website is running on port ${3000}`)
 });
