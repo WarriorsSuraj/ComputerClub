@@ -1,8 +1,13 @@
+/*
+I wish pain and misery to all that must endure this treacherous code.
+*/
+
 import express from 'express';
 import dotenv from "dotenv";
 import handleRoute from './routing';
 import path from "node:path";
 
+// help dotenv not loading .env file root directory
 /*
 dotenv.config({
     path: "../../.env",

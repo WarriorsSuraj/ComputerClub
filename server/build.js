@@ -1,4 +1,6 @@
-/* todo: add obfuscation because */
+/* todo: add obfuscation because 
+can u obfuscate html code?!?!?!?!? if ya then ya do that
+*/
 
 require("esbuild")
     .build({
