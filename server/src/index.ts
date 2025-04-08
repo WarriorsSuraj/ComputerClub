@@ -1,46 +1,46 @@
 import express from 'express';
-import dotenv from "dotenv";
 import handleRoute from './routing';
 import path from "node:path";
 import { configDotenv } from 'dotenv';
 import { redisClient } from './db';
 
+const app = express();
 configDotenv({
     path: path.join(__dirname, "../../.env")
 });
 
-// help dotenv not loading .env file root directory
-dotenv.config();
-
-const app = express();
-
-app.get("/", async (req, res) => {
-    console.log(path.join(__dirname, await handleRoute(req.url)))
-    res.sendFile(path.join(__dirname, await handleRoute(req.url)));
+// https://expressjs.com/en/guide/migrating-5.html#path-syntax
+app.get("/{*splat}", async (req, res) => {
+    try {
+        // check if it's in the db, if not then we know its an asset/resource that the page needs
+        const dbValue = await redisClient.getData(req.url.split("/")[1], true);
+        if (dbValue) {
+            // means it's a file
+            const pathToFile = await handleRoute(req.url);
+            res.sendFile(path.join(__dirname, pathToFile));
+        } else {
+            res.sendFile(path.join(__dirname, "../", "../", req.url));
+        }
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(400);
+    }
 });
 
 app.listen(process.env.PORT, () => {
     console.log(`website is running on port ${process.env.PORT}`)
 });
 
-console.log(process.env.REDIS_URL, process.env.REDIS_PASSWORD)
-
 // db test
 // the below test works, uncomment it and it should log the object properties in the terminal
-
+/*
 setTimeout(() => {
-    redisClient.setData("testing", {
-        testingval: "okok1231",
-        shouldwork: 111
-    }, false);
+    redisClient.setData("testing", "../../index.html", false);
+    redisClient.setData("test", "../../public/example/index.html", false);
 
     setTimeout(async () => {
-        const a = await redisClient.getData("testing", false);
-        console.log(a, a.testingval, a.shouldwork);
+        const a = await redisClient.getData("testing", true);
+        console.log("sadsd ", path.join(__dirname, a));
     });
 }, 2000)
-
-
-
-
-
+*/

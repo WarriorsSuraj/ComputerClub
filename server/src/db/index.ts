@@ -60,7 +60,8 @@ export default class RedisDBManager {
                 await this.client.set(address, dayta);
 
                 if (doChecks) {
-                    const dbVal = await this.client.get(address);
+                    let dbVal = await this.client.get(address);
+                    if (typeof data !== "string") dbVal = JSON.parse(data);
 
                     if (dbVal === null || dbVal !== data) res(false);
                 }
@@ -76,9 +77,9 @@ export default class RedisDBManager {
     async getData(address: string, isString: boolean) {
         let res = await this.client.get(address) ?? "";
 
-        // later: somehow find a way to determine if data is an object, and should be parsed with json.parse
-        if(!isString) res = JSON.parse(res);
-        
+        // later: somehow find a way to determine if data is an object, and should be parsed with json.parse automatically
+        if (!isString) res = JSON.parse(res);
+
         return res;
     }
 };
