@@ -8,13 +8,13 @@
     "run": "node dist/index.js"
   },
   "keywords": [],
-  "author": "Gurmehar",
-  "license": "ISC",
+  "license": "WTFPL",
   "dependencies": {
     "@types/express": "^5.0.1",
+    "@types/redis": "^4.0.11",
     "dotenv": "^16.4.7",
     "esbuild": "^0.25.2",
     "express": "^5.1.0",
-    "mongodb": "^6.15.0"
+    "redis": "^4.7.0"
   }
 }
