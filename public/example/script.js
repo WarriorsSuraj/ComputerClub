@@ -1,1 +1,2 @@
-console.log("yeah ok")
+// to log stuff to devtools:
+console.log("msg")
