@@ -8,6 +8,7 @@ const app = express();
 configDotenv({
     path: path.join(__dirname, "../../.env")
 });
+//app.use(express.static('public'));
 
 // https://expressjs.com/en/guide/migrating-5.html#path-syntax
 app.get("/{*splat}", async (req, res) => {
@@ -33,14 +34,13 @@ app.listen(process.env.PORT, () => {
 
 // db test
 // the below test works, uncomment it and it should log the object properties in the terminal
-/*
+
 setTimeout(() => {
     redisClient.setData("testing", "../../index.html", false);
-    redisClient.setData("test", "../../public/example/index.html", false);
+    redisClient.setData("test", "../../public/dist/pages/example/index.html", false);
 
     setTimeout(async () => {
         const a = await redisClient.getData("testing", true);
         console.log("sadsd ", path.join(__dirname, a));
     });
 }, 2000)
-*/

@@ -1,6 +1,3 @@
-// todo: add db support, use promises, etcetc
-// preferably mongodb or something well known and established
-
 import { redisClient } from "./db"
 
 export default async function handleRoute(requestedPath: string): Promise<string> {
