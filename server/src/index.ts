@@ -20,7 +20,7 @@ app.get("/{*splat}", async (req, res) => {
             const pathToFile = await handleRoute(req.url);
             res.sendFile(path.join(__dirname, pathToFile));
         } else {
-            res.sendFile(path.join(__dirname, "../", "../", req.url));
+            res.sendFile(path.join(__dirname, "../", "../", "public/dist", req.url));
         }
     } catch (err) {
         console.log(err);
