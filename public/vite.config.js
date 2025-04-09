@@ -26,6 +26,8 @@ export default defineConfig({
             input: {
                 // add more below for future
                 example: "pages/example/index.html",
+                "game-engine": "pages/projects/game-engine/index.html",
+                // "markov-chain": "pages/example/projects/markovchain/index.html"
             },
         }
     },

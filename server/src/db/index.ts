@@ -1,6 +1,7 @@
 import { type RedisClientType, createClient } from 'redis';
 import path from "node:path";
 import { configDotenv } from 'dotenv';
+import Console from '../../util/logging';
 
 configDotenv({
     path: path.join(__dirname, "../../.env")
@@ -44,7 +45,7 @@ export default class RedisDBManager {
     }
 
     private handleInitializationError(errormsg: Error) {
-        console.error(`encountered error with redis db ${errormsg}`);
+        Console.error("Error while initializing REDIS DB!", errormsg);
     }
 
     // i recommend always never using doChecks, it basically just checks if the data was correctly written by reading the db after writing
@@ -69,7 +70,7 @@ export default class RedisDBManager {
                 res(true);
             } catch (error) {
                 rej(error);
-                console.error(`error writing data to address ${address}. data: ${data}. error: ${error}`);
+                Console.error(`Error writing data to address ${address}. data: ${data}. error: ${error}`);
             }
         })
     }

@@ -2,6 +2,8 @@
 can u obfuscate html code?!?!?!?!? if ya then ya do that
 */
 
+const Console = require("./util/logging.js")
+
 require("esbuild")
     .build({
         entryPoints: ["src/index.ts"],
@@ -12,5 +14,9 @@ require("esbuild")
         target: "node20",
         platform: "node",
         outfile: "dist/index.js",
-    })
-    .catch(() => process.exit(1));
+    }).then(() => {
+        Console.default.log("Successfully built server.");
+    }).catch((error) => {
+        Console.default.error("Error while building server!", error);
+        process.exit(1);
+    });
