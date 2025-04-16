@@ -1,0 +1,1 @@
+C:\Users\pc\Desktop\ccs\ComputerClub\public\pages\projects\fibonacci\fibonacci-rs\target\debug\fibonacci-rs.exe: C:\Users\pc\Desktop\ccs\ComputerClub\public\pages\projects\fibonacci\fibonacci-rs\src\main.rs
