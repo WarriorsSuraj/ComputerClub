@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import banner from 'vite-plugin-banner';
+import obfuscatorPlugin from "vite-plugin-javascript-obfuscator";
 
 const bannerText = `
 /*
@@ -20,7 +21,23 @@ const bannerText = `
 `;
 
 export default defineConfig({
-    plugins: [react(), banner(bannerText)],
+    plugins: [react(), banner(bannerText), obfuscatorPlugin({
+        options: {
+            debugProtection: true,
+            debugProtectionInterval: 2500,
+            stringArray: true,
+            stringArrayShuffle: true,
+            splitStrings: true,
+            controlFlowFlattening: true,
+            deadCodeInjection: true,
+            stringArrayCallsTransform: true,
+            deadCodeInjectionThreshold: 1,
+            controlFlowFlatteningThreshold: 1,
+            compact: true,
+            disableConsoleOutput: true,
+            selfDefending: true,
+        }
+    })],
     build: {
         rollupOptions: {
             input: {
