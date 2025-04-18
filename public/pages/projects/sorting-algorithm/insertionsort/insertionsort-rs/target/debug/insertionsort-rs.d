@@ -1,0 +1,1 @@
+C:\Users\pc\Desktop\ccs\ComputerClub\public\pages\projects\sorting-algorithm\insertionsort\insertionsort-rs\target\debug\insertionsort-rs.exe: C:\Users\pc\Desktop\ccs\ComputerClub\public\pages\projects\sorting-algorithm\insertionsort\insertionsort-rs\src\main.rs

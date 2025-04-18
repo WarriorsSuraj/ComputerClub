@@ -1,4 +1,5 @@
 // i have never seen anything more unsettling than this heaping pile of shi*t
+// and i have no clue how this even works (based entirely off the pseudocode)
 
 /*
 # Sort an array a[0...n-1].
