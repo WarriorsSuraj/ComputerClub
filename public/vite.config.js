@@ -44,6 +44,7 @@ export default defineConfig({
                 // add more below for future
                 example: "pages/example/index.html",
                 "game-engine": "pages/projects/game-engine/index.html",
+                "fibonacci": "pages/projects/fibonacci/index.html",
                 // "markov-chain": "pages/example/projects/markovchain/index.html"
             },
         }
