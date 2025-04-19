@@ -1,6 +1,8 @@
 /*
 README:
 
+CURRENTLY BROKEN!
+
 theta* is an any-angle pathfinding algorithm based on a*.
 best overall for when you aren't restricted to horizontal/diagonal movements.
 
@@ -143,26 +145,141 @@ class Node {
     }
 }
 
+// using minheap for efficient data structuring
+/*
+README:
+
+insert: O(log n)
+extractMin: O(log n)
+getMin: O(1)
+heapify: O(log n)
+build heap: O(n)
+
+*/
+
+class MinHeap {
+    constructor(comparator, capacity) {
+        this.array = [];
+        this.size = this.array.length;
+
+        // optional:
+        this.capacity = capacity;
+        this.comparator = comparator || ((a, b) => a - b);
+    }
+
+    parent(index) {
+        return ~~((index - 1) / 2);
+    }
+
+    leftChild(index) {
+        return 2 * index + 1;
+    }
+
+    rightChild(index) {
+        return 2 * index + 2;
+    }
+
+    swap(a, b) {
+        [this.array[a], this.array[b]] = [this.array[b], this.array[a]];
+    }
+
+    // restructure heap so smallest at top
+    heapify(index) {
+        let smallest = index;
+        const left = this.leftChild(smallest);
+        const right = this.rightChild(smallest);
+
+        if(left < this.size && this.comparator(this.array[left], this.array[smallest]) < 0) {
+            smallest = left;
+        }
+
+        if(right < this.size && this.comparator(this.array[right], this.array[smallest]) < 0) {
+            smallest = right;
+        }
+
+        if(smallest !== index) {
+            this.swap(index, smallest);
+            this.heapify(smallest);
+        }
+    }
+
+    insert(value) {
+        if(this.size >= (this.capacity || Number.POSITIVE_INFINITY)) {
+            throw new Error("HEAP IS FULL");
+        }
+
+        this.array[this.size] = value;
+        this.size = this.array.length;
+
+        let current = this.size - 1;
+        const parent = this.parent(current);
+        while(current > 0 && this.comparator(this.array[current], this.array[parent]) < 0) {
+            this.swap(current, parent);
+            current = parent;
+        }
+    }
+
+    get Min() {
+        return this.array[0];
+    }
+
+    fixHeap() {
+        if(!this.array.length) return;
+
+        this.array[0] = this.array[this.size - 1];
+        this.size = this.array.length;
+
+        //this.array.pop();
+        this.heapify(0);
+
+        return true;
+    }
+
+    removeMin() {
+        const min = this.array[0];
+        this.array.shift();
+        this.fixHeap();
+
+        return min;
+    }
+    
+    // builds a heap from an array
+    buildHeap(array, size, hasCapacity) {
+        this.array = array;
+        this.size = size;
+        
+        if(hasCapacity) this.capacity = this.size;
+
+        for(let i = ~~((this.size / 2) - 1); i >= 0; i--) {
+            this.heapify(i);
+        }
+    }
+
+    has(item) {
+        return this.array.includes(item);
+    }
+
+    hasStuff() {
+        return this.array.length > 0;
+    }
+}
+
 function thetastar(start, end, nodes) {
     start.g = 0;
     start.parent = start;
     start.f = start.g + heuristic(start, end);
 
-    const openList = [];
-    openList.push(start);
+    const openList = new MinHeap((a, b) => a.f - b.f);
+    openList.insert(start);
 
     const closedList = [];
 
-    while (openList.length) {
+    while (openList.hasStuff()) {
         /* IMPORTANT:
         implement a data structure (e.g. minheap) below instead of sorting each time.
         */
 
-        openList.sort((a, b) => {
-            return a.f - b.f;
-        });
-
-        const node = openList.shift();
+        const node = openList.removeMin();
 
         if (node.x === end.x && node.y === end.y) return reconstructpath(node);
 
@@ -174,15 +291,14 @@ function thetastar(start, end, nodes) {
             if (!neighbor) continue;
 
             const inClosedList = closedList.find(closedNode => closedNode.x === neighbor.x && closedNode.y === neighbor.y);
-            if (!inClosedList) {
-                const inOpenList = openList.find(openNode => openNode.x === neighbor.x && openNode.y === neighbor.y);
-                if (!inOpenList) {
+            //if (!inClosedList) {
+                if (!openList.includes(neighbor)) {
                     neighbor.g = Number.POSITIVE_INFINITY;
                     neighbor.parent = null;
                 }
 
                 updatevertex(node, neighbor, openList, end, nodes);
-            }
+            //}
         }
     }
 
@@ -217,13 +333,17 @@ function updatevertex(node, neighbor, openList, end, nodes) {
         if (node.g + c(node, neighbor) < neighbor.g) {
             neighbor.g = node.g + c(node, neighbor);
             neighbor.parent = node;
+            neighbor.f = neighbor.g + heuristic(neighbor, end);
 
+            /*
             if (openList.find((node) => node.x === neighbor.x && node.y === neighbor.y)) {
                 openList.splice(0, openList.findIndex(node => node.x === neighbor.x && node.y === neighbor.y));
             }
+            openList.push(neighbor);*/
 
-            neighbor.f = neighbor.g + heuristic(neighbor, end);
-            openList.push(neighbor);
+            if(!openList.includes(neighbor)) {
+                openList.insert(neighbor);
+            } else openList.buildHeap(openList.array, openList.array.length);
         }
     }
 }
