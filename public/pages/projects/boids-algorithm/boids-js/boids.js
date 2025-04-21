@@ -33,11 +33,13 @@ class Boid {
 
         this.xvel = (Math.random() - 0.5) * maxSpeed;
         this.yvel = (Math.random() - 0.5) * maxSpeed;
+
+        this.color = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
     }
 }
 
 const boids = [];
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 600; i++) {
     boids.push(new Boid());
 }
 
@@ -117,7 +119,7 @@ let cohesionweight = 0.5;
 let alignmentweight = 0.5;
 let separationweight = 1.5;
 function updateloop(delta) {
-    delta /= 250;
+    delta /= 1000;
 
     for (const boid of boids) {
         const neighbors = boids.filter((n) => n !== boid && Math.hypot(n.x - boid.x, n.y - boid.y) <= viewRange);
@@ -180,12 +182,12 @@ function draw() {
         ctx.rotate(angle);
 
         ctx.beginPath();
-        ctx.moveTo(10, 0);
-        ctx.lineTo(-6, 5);
-        ctx.lineTo(-6, -5);
+        ctx.moveTo(5, 0);
+        ctx.lineTo(-3, 2.5);
+        ctx.lineTo(-3, -2.5);
         ctx.closePath();
 
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = "#fff"; // replace with boid.color for random color
         ctx.fill();
         ctx.restore();
     }
