@@ -36,15 +36,10 @@ app.listen(process.env.PORT, () => {
 // db test
 // the below test works, uncomment it and it should log the object properties in the terminal
 
-/*
+// too lazy to make anything, just add your links below
 setTimeout(() => {
     redisClient.setData("testing", "../../index.html", false);
     redisClient.setData("test", "../../public/dist/pages/example/index.html", false);
     redisClient.setData("game", "../../public/dist/pages/projects/game-engine/index.html", false);
-
-    setTimeout(async () => {
-        const a = await redisClient.getData("testing", true);
-        console.log("sadsd ", path.join(__dirname, a));
-    });
+    redisClient.setData("blogs", "../../public/dist/pages/projects/fibonacci/index.html", false);
 }, 2000)
-*/

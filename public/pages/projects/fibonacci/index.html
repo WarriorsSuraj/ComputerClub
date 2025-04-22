@@ -1,13 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fibonacci Sequence</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fibonacci Sequence</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @import "tailwindcss";
+
+    .tab-button {
+      @apply px-4 py-2 rounded-t-lg;
+    }
+
+    .tab-button.active {
+      @apply bg-gray-200;
+    }
+
+    .tab-content {
+      @apply hidden;
+    }
+
+    .tab-content.active {
+      @apply block;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-    <div id="root"></div>
+
+<body class="bg-gray-100 h-screen flex flex-col items-center">
+  <div class="bg-black absolute w-full top-0 h-16">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="flex justify-between h-14">
+        <div class="flex items-center justify-center">
+          <div class="text-2xl font-bold text-white">jaiomi</div>
+        </div>
+
+        <div class="flex items-center justify-center space-x-8">
+          <div
+            class="text-white hover:text-blue-200 hover:cursor-pointer px-2 py-3 hover:bg-blue-200/15 rounded-md flex items-center mr-[-4px]">
+            <i class="fas fa-home mr-1"></i>Home</div>
+          <div
+            class="text-white hover:text-blue-200 hover:cursor-pointer px-2 py-3 hover:bg-blue-200/15 rounded-md flex items-center">
+            <i class="fas fa-info-circle mr-1"></i>About</div>
+          <div
+            class="text-white hover:text-blue-200 hover:cursor-pointer px-2 py-3 hover:bg-blue-200/15 rounded-md flex items-center">
+            <i class="fas fa-folder mr-1"></i>Projects</div>
+          <div
+            class="text-white hover:text-blue-200 hover:cursor-pointer px-2 py-3 hover:bg-blue-200/15 rounded-md flex items-center">
+            <i class="fas fa-blog mr-1"></i>Blog</div>
+          <div
+            class="text-white hover:text-blue-200 hover:cursor-pointer px-2 py-3 hover:bg-blue-200/15 rounded-md flex items-center">
+            <i class="fas fa-code mr-1"></i>Codebase</div>
+          <div
+            class="text-white hover:text-blue-200 hover:cursor-pointer px-2 py-3 hover:bg-blue-200/15 rounded-md flex items-center">
+            <i class="fab fa-github mr-1"></i><div onclick="window.location.href = 'https://github.com/WarriorsSuraj/ComputerClub'">Github</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-[1200px] mt-20 rounded-lg">
+    <div class="p-8">
+      <h1 class="text-4xl text-gray-800 font-bold mb-4">Fibonacci Sequence</h1>
+      <div class="flex text-neutral-500 font-bold mb-4">
+        <span>By jaiomi</span>
+        <span class="mx-2">&middot;</span>
+        <span>April 21, 2025</span>
+      </div>
+
+      <p class="text-gray-700 font-semibold leading-relaxed">
+        exploring a multitude of fibonacci calculation methods, their pros and cons, and how to implement them.
+      </p>
+    </div>
+  </div>
+
+  <div id="blog-text" class="text-center font-semibold w-3/4 mt-20">
+    <p class="mb-4 leading-relaxed">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p class="mb-4 leading-relaxed">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p class="mb-4 leading-relaxed">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p class="mb-4 leading-relaxed">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p class="mb-4 leading-relaxed">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+  </div>
+
+  <div class="mt-20 w-3/4">
+    <div class="border-b border-gray-200">
+      <ul class="flex flex-wrap -mb-px">
+        <li class="mr-2">
+          <a href="#" class="tab-button inline-block" data-tab="tab1">fibonacci.js</a>
+        </li>
+        <li class="mr-2">
+          <a href="#" class="tab-button inline-block" data-tab="tab2">fibonacci.rs</a>
+        </li>
+        <li class="mr-2">
+          <a href="#" class="tab-button inline-block" data-tab="tab3">fibonacci.c</a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="tab1" class="tab-content active">
+      <div id="editor1" class="w-full h-64"></div>
+    </div>
+
+    <div id="tab2" class="tab-content">
+      <div id="editor2" class="w-full h-64"></div>
+    </div>
+
+    <div id="tab3" class="tab-content">
+      <div id="editor3" class="w-full h-64"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    const editor1 = ace.edit("editor1");
+    editor1.setTheme("ace/theme/monokai");
+    editor1.session.setMode("ace/mode/javascript");
+
+    const editor2 = ace.edit("editor2");
+    editor2.setTheme("ace/theme/monokai");
+    editor2.session.setMode("ace/mode/rust");
+
+    const editor3 = ace.edit("editor3");
+    editor3.setTheme("ace/theme/monokai");
+    editor3.session.setMode("ace/mode/c_cpp");
+
+
+    const code1 = `let last = 1;
+let seclast = 0;
+let val = 0;
+
+let iter = 0;
+const goal = 10;
+let sequence = [];
+
+while (iter < goal) {
+  val = seclast + last;
+  seclast = last;
+  last = val;
+
+  iter++;
+}`;
+
+    const code2 = `use std::time::Instant;
+
+/* recursive fibonacci sequence
+
+time complexity: O(n^2) - very bad
+*/
+
+fn fib(mut n: u128) -> u128 {
+    n -= 1;
+
+    match n {
+        0 => 1,
+        1 => 1,
+        _ => fib(n - 1) + fib(n - 2),
+    }
+}
+
+/* most logical fibonacci calculation system
+
+while loop
+
+time complexity: i don't know (might be O(log(n)))
+*/
+
+fn fastfib(mut n: u128) -> u128 {
+    n -= 1;
+
+    let mut last: u128 = 1;
+    let mut seclast: u128 = 0;
+    let mut val: u128 = 0;
+
+    let mut iter = 0;
+    while iter < n {
+        val = seclast + last;
+
+        seclast = last;
+        last = val;
+
+        iter += 1;
+    }
+
+    val
+}
+
+fn main() {
+    let iter = 186;
+
+    let start = Instant::now();
+    println!("result: {}", fastfib(iter));
+
+    let elapsed = start.elapsed();
+
+    println!(
+        "time taken to calculate the {}th fibonacci number: {:?}",
+        iter, elapsed
+    );
+}
+`;
+
+    const code3 = `#include <stdio.h>
+
+int main() {
+    int last = 0;
+    int seclast = 1;
+    int val = 0;
+
+    int iter = 10;
+
+    for(int i = 0; i < iter; i++) {
+        val = seclast + last;
+        
+        seclast = last;
+        last = val;
+    }
+
+    printf("%d", val);
+
+    return 1;
+}
+    `;
+
+    editor1.setValue(code1);
+    editor2.setValue(code2);
+    editor3.setValue(code3);
+
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const tabId = button.dataset.tab;
+
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+  </script>
 </body>
 
-<script src="script.tsx" type="module"></script>
 </html>

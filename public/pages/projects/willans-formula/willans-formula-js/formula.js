@@ -4,7 +4,7 @@ README:
 formula to calculate for the n'th prime number
 probably will start to break down because of floating point schenanigans
 
-also, its SUPER inefficient if your goal is to get prime numbers
+also, its SUPER inefficient if your goal is to get prime numbers (because factorials can get super big super fast)
 
 really nice video to help visualise:
 https://www.youtube.com/watch?v=j5s0h42GfvM
@@ -56,7 +56,7 @@ function calcprime(n) {
 
         const res = add(vals);
 
-        const outside = floor(pow(n / res, 1 / n)); //Math.floor(Math.pow(n / res), 1 / n);
+        const outside = floor(pow(n / res, 1 / n)); // Math.floor(Math.pow(n / res), 1 / n);
         results.push(outside);
     }
 
@@ -64,4 +64,4 @@ function calcprime(n) {
     return 1 + final;
 }
 
-console.log(calcprime(7));
+console.log(calcprime(6));
