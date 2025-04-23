@@ -30,7 +30,7 @@ app.get("/{*splat}", async (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-    Console.log(`Website is running on PORT ${process.env.PORT}!`)
+    Console.log(`Website is running on PORT ${process.env.PORT}!`);
 });
 
 // db test

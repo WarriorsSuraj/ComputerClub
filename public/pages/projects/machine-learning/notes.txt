@@ -1,0 +1,46 @@
+cool useful stuff
+https://www.youtube.com/watch?v=E0Hmnixke2g
+
+
+supervised learning
+- we know the independant variable(s)
+- we know the dependant variable(s)
+- we know the results (through some training data)
+
+used to predict the output for new unknown data
+
+e.g. predicting the price of a house based on features of the house (sqr footage, year of construction, etc)
+catagorizing stuff into groups 
+
+unsupervised learning
+- basically any algorithm that isnt supervised (shocker!)
+- we know nothing about the data (no background information given)
+- grouped by similarities
+
+e.g. sorting emails
+
+# SUPERVISED LEARNING
+
+2 sub categories: classification and regression
+
+## regression
+
+predict a continuous numeric target variable.
+
+## classification
+
+assign a class to some data points
+
+
+
+# linear regression
+tries to find a linear relationship between 2 variables (input, output)
+
+in simplest form: line of best fit!!1!1
+
+
+# logistic regression
+fits non linear functions to input/output data (sigmoid functions)
+
+# k nearest neighbours
+basically assigns value based on nearest neighbours on a grid.
