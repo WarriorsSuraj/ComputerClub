@@ -486,3 +486,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+./venv
+venv
+
+node_modules
+./node_modules

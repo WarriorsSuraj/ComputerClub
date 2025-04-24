@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.cargo.target": "./rust",
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.inlayHints.functionReturnTypes": true
+}

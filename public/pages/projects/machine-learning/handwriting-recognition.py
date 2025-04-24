@@ -8,11 +8,12 @@ import cv2
 root = tk.Tk()
 root.title("handwriting recognition tool")
 
-width, height = 200, 200
+width, height = 800, 600
 
 canvas = tk.Canvas(root, width=width, height=height)
 canvas.pack()
 
+# "L" sets to grayscale i think
 image1 = Image.new("L", (width, height), color=255)
 draw = ImageDraw.Draw(image1)
 
@@ -66,7 +67,7 @@ def processimage(imgpath):
     # enhance contrast
     img = cv2.equalizeHist(img)
     # reduce noise (found on docs)
-    img = cv2.GaussianBlur(img, (3, 3), 0)
+    # img = cv2.GaussianBlur(img, (3, 3), 0)
     # "Apply adaptive thresholding for better binarization"
     img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  cv2.THRESH_BINARY_INV, 11, 2)
 
@@ -79,12 +80,14 @@ def interprettext(imgpath):
     temppath = "temp_processed.png"
     cv2.imwrite(temppath, processedimg)
 
-    res = reader.readtext(temppath, detail=1)
+    res = reader.readtext(temppath, detail=0.8)
     debuglabel.config(text=f"debug info: {res}")
 
     # what the **** is this contraption
     text = " ".join([ress[1] for ress in res]) if res else "nothing detected"
+
     return text
+
 def save():
     image1.save("t.png")
     
