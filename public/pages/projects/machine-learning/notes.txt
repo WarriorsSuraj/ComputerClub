@@ -1,5 +1,7 @@
 cool useful stuff
 https://www.youtube.com/watch?v=E0Hmnixke2g
+https://www.youtube.com/watch?v=SmZmBKc7Lrs
+https://www.youtube.com/watch?v=Ilg3gGewQ5U
 
 
 supervised learning
@@ -44,3 +46,45 @@ fits non linear functions to input/output data (sigmoid functions)
 
 # k nearest neighbours
 basically assigns value based on nearest neighbours on a grid.
+
+
+
+
+sigmoid function:
+maps any real number to (0, 1) EXCLUSIVE
+formula: f(x) = 1 / (1 + pow(e, -x))
+used to show PROBABLITIES
+
+sigmoid derivative:
+shows how fast the sigmoid changes
+"Used in backpropagation to compute how changes in inputs affect the loss."
+formula: if y = f(x), then f(x)1 = f(x) * (1 - f(x))
+
+if x is the sigmoid output, then the formula simplifies to:
+x * (1 - x)
+
+
+
+notes on prototype #1:
+
+adding more hidden neurons results in it being able to handle more complicated stuff
+HOWEVER, too many will just cause it to start memorizing examples (which we DONT want)
+
+
+BACKPROPAGATION!:
+its how the network learns from its mistakes
+it looks back on wrong answers, figures out what went wrong with the weights/biases, and readjusts them
+starts at output and works its way back to input
+
+forward propagation:
+the weights (matrices) transform the inputs (vectors) with transformations applied through the biases
+
+
+hidden layer:
+finds patterns in the inputs
+output layer:
+turns patterns into results
+
+is like having 2 teams, 1 to analyze the problem and 1 to give the solution
+
+epoch: term used to describe one successful training iteration
