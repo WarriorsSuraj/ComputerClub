@@ -19,7 +19,7 @@ class NN:
         self.bias = np.zeros((hidden_size,))
         self.bias2 = np.zeros((output_size,))
         
-        self.learning_rate = 0.15 # smaller -> less adaptable to new data (needs lot of new data to influence)
+        self.learning_rate = 0.25 # smaller -> less adaptable to new data (needs lot of new data to influence)
 
         pass
 
@@ -84,7 +84,7 @@ for x in inputs:
 nn = NN(3, 6, 1)
 inputs = np.array([[0, 0, 0], [1, 0, 1], [0, 1, 1], [1, 1, 1], [0, 0, 1], [0, 1, 0], [1, 0, 1], [1, 1, 0]])
 targets = np.array([[1], [0], [0], [1], [0], [0], [0], [0]])
-nn.train(inputs, targets, 10000)
+nn.train(inputs, targets, 5000000)
 
 # test it on the data it trained with
 for x in inputs:
